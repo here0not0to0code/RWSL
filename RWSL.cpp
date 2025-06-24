@@ -162,6 +162,7 @@ int main()
         SimConnect_RequestDataOnSimObjectType(hSimConnect, REQUEST1, DEFINITION_1, 4000, SIMCONNECT_SIMOBJECT_TYPE_AIRCRAFT);
         SimConnect_CallDispatch(hSimConnect, MyDispatchProc, NULL);
         Sleep(2000);
+        system("cls");
         i = 0; 
 
         Aircraftlat.clear();
