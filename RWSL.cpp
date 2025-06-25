@@ -142,7 +142,7 @@ int main()
     SFObox1.SFOcordnets[4] = 37.627864457616;
     SFObox1.SFOcordnets[5] = -122.36625576956017;
     SFObox1.SFOcordnets[6] = 37.62796601502269;
-    SFObox1.SFOcordnets[7] = -122.36756234938098;
+    SFObox1.SFOcordnets[7] = -122.36756234938098; // not a issue 
 
     if (!SimOpen()) 
     {
