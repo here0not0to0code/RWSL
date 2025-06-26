@@ -123,11 +123,31 @@ void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContex
 int main()
 {
     char SpoofCheak;
-    std::cout << "Spoof Cordnets? y for yes"; 
+    std::cout << "Spoof Cordnets? y for yes \n"; // Testing on other systems, and in general 
     std::cin >> SpoofCheak;
     if (SpoofCheak == 'y')
     {
+        int Inc;
         Spoofing = true;
+        std::cout << "Please put in amount of simulated Aircraft";
+        std::cin >> NumOfAircraft;
+
+		Aircraftlat.resize(NumOfAircraft);
+        Aircraftlon.resize(NumOfAircraft);
+        Aircraftalt.resize(NumOfAircraft);
+        Aircraftairspeed.resize(NumOfAircraft);
+
+        for (int j = 0; j < NumOfAircraft; j++) // realy running out verable names here, should not have used i.
+        {
+            std::cout << "Airplane Long";
+            std::cin >> Aircraftlon[j];
+            std::cout << "Airplane Lat";
+            std::cin >> Aircraftlat[j];
+        }
+
+        std::cout << "Distance between" << SFO_NAME << " and Aircraft is " << GetDistance(Aircraftlat, Aircraftlon, KSFOLat, KSFOLong, i);
+
+        
     }
     SFObox1.SFOcordnets[0] = 37.60538626597869;
     SFObox1.SFOcordnets[1] = -122.38248229045143;
