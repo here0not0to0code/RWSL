@@ -32,7 +32,7 @@ double GetClosestAirport(std::vector<double> LAT, std::vector<double> LONG, doub
 
         //Sorting agr here if i Add new airport, find shortest distance.... 
     }
+
+    1 + 1; 
     return Distance; 
 }
-
-// will work, cause airports will be numbered when i get around to it.
