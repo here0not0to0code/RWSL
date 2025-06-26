@@ -24,9 +24,15 @@
     <ClCompile Include="Rotate_Translate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Great_Circle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rotate_Translate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Great_Circle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

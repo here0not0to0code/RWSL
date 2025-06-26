@@ -1,5 +1,4 @@
 #include <iostream>
-#include "AirportInfomation\KSFO.cpp"
 #include <windows.h>
 #include <tchar.h>
 #include <stdio.h>
@@ -8,6 +7,7 @@
 #include <vector>
 #include <exception>
 
+#include "AirportInfomation\KSFO.cpp"
 #include "Rotate_Translate.h"
 #include "SimConnect.h"
 
@@ -19,12 +19,17 @@ std::vector<double> Aircraftlon;
 std::vector<double> Aircraftalt; 
 std::vector<double> Aircraftairspeed;
 std::vector<bool> insideBox; 
+
+std::vector<double> Player_lat;
+std::vector<double> Player_long;
+std::vector<double> Player_alt;
+std::vector<double> Player_airspeed;
+
 int i = 0;
 int NumOfAircraft;
 int j = 0;
 
 SFObox SFObox1;
-
 
 
 
@@ -122,8 +127,10 @@ void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContex
                  Aircraftalt.push_back(data->altitude);
                  Aircraftairspeed.push_back(data->Airspeed);
                  insideBox.push_back(NumOfAircraft);
-                 std::cout << i << '\n';
+                 std::cout << i << '\n' << '\n';
+                 std::cout << "Distance between"
                  
+				 
                  Boxcheak(NumOfAircraft, i);
 
              }
