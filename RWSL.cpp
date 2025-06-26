@@ -1,5 +1,4 @@
 #include <iostream>
-#include "AirportInfomation\KSFO.cpp"
 #include <windows.h>
 #include <tchar.h>
 #include <stdio.h>
@@ -8,8 +7,10 @@
 #include <vector>
 #include <exception>
 
+#include "AirportInfomation\KSFO.cpp"
 #include "Rotate_Translate.h"
 #include "SimConnect.h"
+#include "Great_Circle.h"
 
 HANDLE hSimConnect = NULL;
 
@@ -19,12 +20,17 @@ std::vector<double> Aircraftlon;
 std::vector<double> Aircraftalt; 
 std::vector<double> Aircraftairspeed;
 std::vector<bool> insideBox; 
+
+std::vector<double> Player_lat;
+std::vector<double> Player_long;
+std::vector<double> Player_alt;
+std::vector<double> Player_airspeed;
+
 int i = 0;
 int NumOfAircraft;
 int j = 0;
 
 SFObox SFObox1;
-
 
 
 
@@ -85,24 +91,6 @@ bool Boxcheak(int NumOfAircraft, int AircraftID)
     return true;
 }
 
-/* void CALLBACK dispatchEvents(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext)
-{
-    HRESULT hr;
-    int fsecCnt = 0;
-    switch (pData->dwID)
-    {
-    case SIMCONNECT_RECV_ID_EVENT:
-    {
-        SIMCONNECT_RECV_EVENT* evt = (SIMCONNECT_RECV_EVENT*)pData;
-        if (SUCCEEDED(SimConnect_RequestDataOnSimObjectType(hSimConnect, REQUEST1, DEFINITION_1, 4, SIMCONNECT_SIMOBJECT_TYPE_AIRCRAFT)));
-        {
-            printf("\nReceived:%d", pData->dwID);
-        }
-
-     }
-
-    }
-} */
 
 void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContext)
 {
@@ -122,8 +110,10 @@ void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContex
                  Aircraftalt.push_back(data->altitude);
                  Aircraftairspeed.push_back(data->Airspeed);
                  insideBox.push_back(NumOfAircraft);
-                 std::cout << i << '\n';
+                 std::cout << i << '\n' << '\n';
+                 std::cout << "Distance between"
                  
+				 
                  Boxcheak(NumOfAircraft, i);
 
              }
