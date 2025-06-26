@@ -129,19 +129,22 @@ int main()
     {
         int Inc;
         Spoofing = true;
-        std::cout << "Please put in amount of simulated Aircraft";
+        std::cout << "Please put in amount of simulated Aircraft\n";
         std::cin >> NumOfAircraft;
 
-		Aircraftlat.resize(NumOfAircraft);
-        Aircraftlon.resize(NumOfAircraft);
-        Aircraftalt.resize(NumOfAircraft);
-        Aircraftairspeed.resize(NumOfAircraft);
+		Aircraftlat.push_back(NumOfAircraft);
+        Aircraftlon.push_back(NumOfAircraft);
+        Aircraftalt.push_back(NumOfAircraft);
+        
+        std::cout << "It is assumed that ALT is within RWSL range. \n";
+        Sleep(2000);
+		system("cls");
 
-        for (int j = 0; j < NumOfAircraft; j++) // realy running out verable names here, should not have used i.
+        for (int j = -1; j < NumOfAircraft; j++) // realy running out verable names here, should not have used i.
         {
-            std::cout << "Airplane Long";
+            std::cout << "Airplane Long \n";
             std::cin >> Aircraftlon[j];
-            std::cout << "Airplane Lat";
+            std::cout << "Airplane Lat \n";
             std::cin >> Aircraftlat[j];
         }
 
