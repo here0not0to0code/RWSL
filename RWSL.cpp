@@ -127,7 +127,7 @@ int main()
     std::cin >> SpoofCheak;
     if (SpoofCheak == 'y')
     {
-        int Inc;
+        int Inc = 0;
         Spoofing = true;
         std::cout << "Please put in amount of simulated Aircraft\n";
         std::cin >> NumOfAircraft;
@@ -140,7 +140,7 @@ int main()
         Sleep(2000);
 		system("cls");
 
-        for (int j = -1; j < NumOfAircraft; j++) // realy running out verable names here, should not have used i.
+        for (int j = 0; j < NumOfAircraft; j++) // realy running out verable names here, should not have used i.
         {
             std::cout << "Airplane Long \n";
             std::cin >> Aircraftlon[j];
@@ -148,7 +148,7 @@ int main()
             std::cin >> Aircraftlat[j];
         }
 
-        std::cout << "Distance between" << SFO_NAME << " and Aircraft is " << GetDistance(Aircraftlat, Aircraftlon, KSFOLat, KSFOLong, i);
+        std::cout << "Distance between" << SFO_NAME << " and Aircraft is " << GetDistance(Aircraftlat, Aircraftlon, KSFOLat, KSFOLong, j);
 
         
     }
