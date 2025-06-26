@@ -3,32 +3,38 @@
 #include <cmath>
 #include "AirportInfomation\KSFO.cpp"
 #define EARTH_RADIUS 6371.0 // KM
+#define PI 3.1415926535
 
-double GetDistance(std::vector<double> LAT, std::vector<double> LONG, double End_lat, double End_LONG, int AircraftID)
+double DegRad(double DEG)
 {
-    double Latrad = (LAT[AircraftID - 1] * 3.1415926535) / 180;
-    double Longrad = (LONG[AircraftID - 1] * 3.1415926535) / 180; // -1 cause it writes to 0 first dummy 
-	double End_latRad = (End_lat * 3.1415926535) / 180; 
-	double End_LONGrad = (End_LONG * 3.1415926535) / 180; 
+    return (DEG * (PI / 180));
+}
 
-    double Diff_lat = Latrad - End_latRad;
-    double Diff_long = Longrad - End_LONGrad;
+double GetDistance(double Lat, double LONG, double End_Lat, double End_LONG, int AircraftID)
+{
+    double Latrad = DegRad(Lat);
+    double Longrad = DegRad(LONG);
+    double End_LatRad = DegRad(End_LONG);
+    double End_LONGrad = DegRad(End_LONG);
 
-    double a = sin(Diff_lat / 2) * sin(Diff_lat / 2) +
-        cos(Latrad) * cos(End_latRad) *
-        sin(Diff_long / 2) * sin(Diff_long / 2);
+    double Diff_LatRad = Latrad - End_LatRad;
+    double Diff_longRad = Longrad - End_LONGrad;
+
+    double a = sin(Diff_LatRad / 2) * sin(Diff_LatRad / 2) +
+        cos(Latrad) * cos(End_LatRad) *
+        sin(Diff_longRad / 2) * sin(Diff_longRad / 2);
 
     double Distance = (2 * atan2(sqrt(a), sqrt(1 - a)));
 
-    return Distance * EARTH_RADIUS;
+    return Distance * EARTH_RADIUS ;
 }
 
-double GetClosestAirport(std::vector<double> LAT, std::vector<double> LONG, double End_lat, double End_LONG) // Gets the distance from every airport. soon to auto cheak, but need to possably change backend 
+double GetClosestAirport(double Lat, double LONG, double End_Lat, double End_LONG) // Gets the distance from every airport. soon to auto cheak, but need to possably change backend 
 {
     double Distance;
     for (int i = 0; i < NumOfAirports; ++i)
     {
-		Distance = GetDistance(LAT, LONG, End_lat, End_LONG, i);
+		Distance = GetDistance(Lat, LONG, End_Lat, End_LONG, i);
 
         //Sorting agr here if i Add new airport, find shortest distance.... 
     }
