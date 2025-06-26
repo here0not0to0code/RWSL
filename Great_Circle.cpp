@@ -28,3 +28,5 @@ double GetClosestAirport(std::vector<double> LAT, std::vector<double> LONG, doub
 		GetDistance(LAT, LONG, End_lat, End_LONG, i);
     }
 }
+
+//test 
