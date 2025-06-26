@@ -14,6 +14,7 @@
 
 HANDLE hSimConnect = NULL;
 
+bool Spoofing;
 
 std::vector<double> Aircraftlat;
 std::vector<double> Aircraftlon;
@@ -121,6 +122,13 @@ void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContex
 
 int main()
 {
+    char SpoofCheak;
+    std::cout << "Spoof Cordnets? y for yes"; 
+    std::cin >> SpoofCheak;
+    if (SpoofCheak == 'y')
+    {
+        Spoofing = true;
+    }
     SFObox1.SFOcordnets[0] = 37.60538626597869;
     SFObox1.SFOcordnets[1] = -122.38248229045143;
     SFObox1.SFOcordnets[2] = 37.605259539282606;
