@@ -111,7 +111,7 @@ void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContex
                  Aircraftairspeed.push_back(data->Airspeed);
                  insideBox.push_back(NumOfAircraft);
                  std::cout << i << '\n' << '\n';
-                 std::cout << "Distance between"
+                 std::cout << "Distance between";
                  
 				 
                  Boxcheak(NumOfAircraft, i);
