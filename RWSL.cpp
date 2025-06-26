@@ -112,7 +112,7 @@ void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContex
                  Aircraftairspeed.push_back(data->Airspeed);
                  insideBox.push_back(NumOfAircraft);
                  std::cout << i << '\n' << '\n';
-                 std::cout << "Distance between" << SFO_NAME << " and Aircraft is " << GetDistance(Aircraftlat[i -1], Aircraftlon[i - 1], KSFOLong ,KSFOLat, i);
+                 //std::cout << "Distance between" << SFO_NAME << " and Aircraft is " << GetDistance(Aircraftlat[i -1], Aircraftlon[i - 1], KSFOLong ,KSFOLat, i);
 
                  // Boxcheak(NumOfAircraft, i);
              }           
@@ -122,6 +122,17 @@ void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContex
 
 int main()
 {
+    auto plane_position = get_xyz_from_coord({ -31, 20 }, 100);
+    auto airport_position = get_xyz_from_coord({ -20, 20 }, 20);
+
+    double distance = glm::length(plane_position - airport_position);
+
+    printf("%f", distance /1000);
+
+    //printf("(%f,%f,%f)\n", data.x, data.y, data.z);
+
+    return -1;
+
     char SpoofCheak;
     std::cout << "Spoof Cordnets? y for yes \n"; // Testing on other systems, and in general 
     std::cin >> SpoofCheak;
@@ -149,7 +160,7 @@ int main()
 
         }
 
-        std::cout << "Distance between" << SFO_NAME << " and Aircraft is " << GetDistance(Aircraftlat[j], Aircraftlon[j], KSFOLat, KSFOLong, i);
+        std::cout << "Distance between" << SFO_NAME << " and Aircraft is " << GetDistance({ Aircraftlat[j], Aircraftlon[j] }, { KSFOLat, KSFOLong }, i);
 
         
     }
