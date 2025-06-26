@@ -132,9 +132,9 @@ int main()
         std::cout << "Please put in amount of simulated Aircraft\n";
         std::cin >> NumOfAircraft;
 
-		Aircraftlat.push_back(NumOfAircraft);
-        Aircraftlon.push_back(NumOfAircraft);
-        Aircraftalt.push_back(NumOfAircraft);
+		Aircraftlat.resize(NumOfAircraft);
+        Aircraftlon.resize(NumOfAircraft);
+        Aircraftalt.resize(NumOfAircraft);
         
         std::cout << "It is assumed that ALT is within RWSL range. \n";
         Sleep(2000);
@@ -146,9 +146,10 @@ int main()
             std::cin >> Aircraftlon[j];
             std::cout << "Airplane Lat \n";
             std::cin >> Aircraftlat[j];
+
         }
 
-        std::cout << "Distance between" << SFO_NAME << " and Aircraft is " << GetDistance(Aircraftlat, Aircraftlon, KSFOLat, KSFOLong, j);
+        std::cout << "Distance between" << SFO_NAME << " and Aircraft is " << GetDistance(Aircraftlat, Aircraftlon, KSFOLat, KSFOLong, i);
 
         
     }
