@@ -1,7 +1,7 @@
 #include "Great_Circle.h"
 #include <vector>
 #include <cmath>
-#include "AirportInfomation\KSFO.cpp"
+#include "AirportInfomation.cpp"
 #define EARTH_RADIUS 6378137 // KM
 #define PI 3.1415926535
 #define DEG_TO_RAD_CONST (PI / 180)
@@ -42,6 +42,8 @@ double GetDistance(glm::vec2 coord_0, glm::vec2 coord_1, int AircraftID)
 
     glm::vec3 first_direction = rotate_first_point(coord_0);
     glm::vec3 second_direction = rotate_first_point(coord_1);
+
+    
 
     return (glm::acos(glm::dot(first_direction, second_direction)) * EARTH_RADIUS);
 }

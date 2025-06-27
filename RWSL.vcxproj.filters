@@ -18,13 +18,13 @@
     <ClCompile Include="RWSL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AirportInfomation\KSFO.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Rotate_Translate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Great_Circle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AirportInfomation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,14 +7,18 @@
 #include <vector>
 #include <exception>
 
-#include "AirportInfomation\KSFO.cpp"
+#include "AirportInfomation.cpp"
 #include "Rotate_Translate.h"
 #include "SimConnect.h"
 #include "Great_Circle.h"
+#include "glm/glm.hpp"
+#include "glm/gtx/quaternion.hpp"
 
 HANDLE hSimConnect = NULL;
 
 bool Spoofing;
+glm::vec4 Box;
+
 
 std::vector<double> Aircraftlat;
 std::vector<double> Aircraftlon;
@@ -27,26 +31,25 @@ std::vector<double> Player_long;
 std::vector<double> Player_alt;
 std::vector<double> Player_airspeed;
 
+
+
 int i = 0;
 int NumOfAircraft;
 int j = 0;
 
-SFObox SFObox1;
-
-
+struct AircraftData 
+{
+    double latitude;
+    double longitude;
+    double altitude;
+    double Airspeed;
+}; // usfull
 
 static enum DATA_DEFINE_ID {
     DEFINITION_1,
 };
 static enum DATA_REQUEST_ID {
 	REQUEST1
-};
-
-struct AircraftData {
-    double latitude;
-    double longitude;
-    double altitude;
-    double Airspeed;
 };
 
 bool SimOpen()
@@ -106,29 +109,27 @@ void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContex
                  printf("Latitude: %f, Longitude: %f, Altitude: %f, Speed: %f, \n", data->latitude, data->longitude, data->altitude, data->Airspeed);
                  ++i;
                  NumOfAircraft = i;
-                 Aircraftlat.push_back(data->latitude);
-                 Aircraftlon.push_back(data->longitude);
+                 glm::vec4 AircraftInfo = { data->latitude, data->longitude, data->altitude, data->Airspeed };
                  Aircraftalt.push_back(data->altitude);
                  Aircraftairspeed.push_back(data->Airspeed);
                  insideBox.push_back(NumOfAircraft);
                  std::cout << i << '\n' << '\n';
-                 //std::cout << "Distance between" << SFO_NAME << " and Aircraft is " << GetDistance(Aircraftlat[i -1], Aircraftlon[i - 1], KSFOLong ,KSFOLat, i);
 
-                 // Boxcheak(NumOfAircraft, i);
+                 double distance = glm::length(AircraftInfo - airport_position);
+
+                 auto plane_position = get_xyz_from_coord({ -31, 20 }, 100);
+                 auto airport_position = get_xyz_from_coord({ -20, 20 }, 20);
+
+                 std::cout << distance / 1000; 
              }           
         }
     }
 }
 
+
 int main()
 {
-    auto plane_position = get_xyz_from_coord({ -31, 20 }, 100);
-    auto airport_position = get_xyz_from_coord({ -20, 20 }, 20);
-
-    double distance = glm::length(plane_position - airport_position);
-
-    printf("%f", distance /1000);
-
+    
     //printf("(%f,%f,%f)\n", data.x, data.y, data.z);
 
     return -1;

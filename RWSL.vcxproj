@@ -133,7 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AirportInfomation\KSFO.cpp" />
+    <ClCompile Include="AirportInfomation.cpp" />
     <ClCompile Include="Great_Circle.cpp" />
     <ClCompile Include="Rotate_Translate.cpp" />
     <ClCompile Include="RWSL.cpp" />
