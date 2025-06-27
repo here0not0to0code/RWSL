@@ -20,22 +20,16 @@ bool Spoofing;
 glm::vec4 Box;
 
 
-std::vector<double> Aircraftlat;
+/* std::vector<double> Aircraftlat;
 std::vector<double> Aircraftlon;
 std::vector<double> Aircraftalt; 
 std::vector<double> Aircraftairspeed;
-std::vector<bool> insideBox; 
-
-std::vector<double> Player_lat;
-std::vector<double> Player_long;
-std::vector<double> Player_alt;
-std::vector<double> Player_airspeed;
-
-
+std::vector<bool> insideBox;*/
 
 int i = 0;
 int NumOfAircraft;
 int j = 0;
+
 
 struct AircraftData 
 {
@@ -43,7 +37,9 @@ struct AircraftData
     double longitude;
     double altitude;
     double Airspeed;
-}; // usfull
+    glm::vec4 AIRCRAFTRUE;
+}; 
+std::vector<AircraftData> Airframe;
 
 static enum DATA_DEFINE_ID {
     DEFINITION_1,
@@ -109,18 +105,10 @@ void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void* pContex
                  printf("Latitude: %f, Longitude: %f, Altitude: %f, Speed: %f, \n", data->latitude, data->longitude, data->altitude, data->Airspeed);
                  ++i;
                  NumOfAircraft = i;
-                 glm::vec4 AircraftInfo = { data->latitude, data->longitude, data->altitude, data->Airspeed };
-                 Aircraftalt.push_back(data->altitude);
-                 Aircraftairspeed.push_back(data->Airspeed);
-                 insideBox.push_back(NumOfAircraft);
-                 std::cout << i << '\n' << '\n';
 
-                 double distance = glm::length(AircraftInfo - airport_position);
-
-                 auto plane_position = get_xyz_from_coord({ -31, 20 }, 100);
-                 auto airport_position = get_xyz_from_coord({ -20, 20 }, 20);
-
-                 std::cout << distance / 1000; 
+                 Airframe.push_back(i)w;
+                 
+                 
              }           
         }
     }
@@ -144,9 +132,9 @@ int main()
         std::cout << "Please put in amount of simulated Aircraft\n";
         std::cin >> NumOfAircraft;
 
-		Aircraftlat.resize(NumOfAircraft);
+		/* Aircraftlat.resize(NumOfAircraft);
         Aircraftlon.resize(NumOfAircraft);
-        Aircraftalt.resize(NumOfAircraft);
+        Aircraftalt.resize(NumOfAircraft);*/
         
         std::cout << "It is assumed that ALT is within RWSL range. \n";
         Sleep(2000);
@@ -195,11 +183,11 @@ int main()
         system("cls");
         i = 0; 
 
-        Aircraftlat.clear();
+        /* Aircraftlat.clear();
         Aircraftlon.clear();
         Aircraftairspeed.clear();
         Aircraftalt.clear();
-        insideBox.clear();
+        insideBox.clear();*/
         
     }
 
